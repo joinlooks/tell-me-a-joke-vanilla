@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .container {
+        display: flex;
+        width: 80vw;
+        margin: auto;
+        height: 100vh;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .setup {
+        font-size: 40px;
+      }
+
+      .punchline {
+        font-size: 30px;
+      }
+    </style>
+    <title>Tell me a Joke!</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="setup" id="setup"></div>
+      <div class="punchline" id="punchline"></div>
+    </div>
+
+    <script>
+      const api = `https://joke.deno.dev/`;
+      const fetchJoke = async () => {
+        await (
+          await fetch(api)
+        )
+          .json()
+          .then((data) => {
+            document.getElementById("setup").innerText = `${data.setup}`;
+            document.getElementById(
+              "punchline"
+            ).innerText = `${data.punchline}`;
+          })
+          .catch(() =>
+            alert("Sorry! Failed to fetch joke.\nPlease reload the page.")
+          );
+      };
+
+      window.onload = () => fetchJoke();
+    </script>
+  </body>
+</html>
