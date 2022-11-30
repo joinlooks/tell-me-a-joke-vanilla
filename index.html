@@ -4,61 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
-
-      * {
-        margin: 0;
-        padding: 0;
-        font-family: "Open Sans", sans-serif;
-      }
-
-      .container {
-        display: flex;
-        width: 80vw;
-        margin: auto;
-        height: 100vh;
-        gap: 20px;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-      }
-
-      .setup {
-        font-size: 40px;
-      }
-
-      .punchline {
-        font-size: 30px;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
     <title>Tell me a Joke!</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="container">
       <div class="setup" id="setup"></div>
       <div class="punchline" id="punchline"></div>
     </div>
 
-    <script>
-      const api = `https://joke.deno.dev/`;
-      const fetchJoke = async () => {
-        await (
-          await fetch(api)
-        )
-          .json()
-          .then((data) => {
-            document.getElementById("setup").innerText = `${data.setup}`;
-            document.getElementById(
-              "punchline"
-            ).innerText = `${data.punchline}`;
-          })
-          .catch(() =>
-            alert("Sorry! Failed to fetch joke.\nPlease reload the page.")
-          );
-      };
-
-      window.onload = () => fetchJoke();
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
